@@ -1,9 +1,11 @@
 import nodemailer from 'nodemailer';
-import 'dotenv/config';
+// import 'dotenv/config'; // imported once in server.js
 
 // #########################################################
 
 const { FROM_EMAIL, FROM_PASS } = process.env;
+
+// *********************************************************
 
 const nodemailerConfig = {
   host: 'smtp.ukr.net',

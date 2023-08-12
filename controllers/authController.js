@@ -1,4 +1,4 @@
-import 'dotenv/config';
+// import 'dotenv/config'; // imported once in server.js
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { nanoid } from 'nanoid';
@@ -12,7 +12,7 @@ import Jimp from 'jimp';
 import User from '../models/user.js';
 import { controllerWrapper } from '../decorators/index.js';
 import { HttpError } from '../helpers/index.js';
-import { sendEmail } from '../helpers/index.js';
+import { sendEmail } from '../services/index.js';
 
 // ####################################################
 
@@ -23,7 +23,7 @@ const { BASE_URL, JWT_SECRET } = process.env;
 // Error messages:
 const emailErrorMsg = 'This email is already linked to an existing account';
 const authErrorMsg = 'Invalid email or password';
-const verifyEmailMsg = 'Please verify your email first';
+const verifyEmailMsg = 'You need to verify your email first';
 
 const makeVerificationEmail = (email, verificationToken) => ({
   to: email,
