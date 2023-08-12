@@ -16,6 +16,15 @@ authRouter.post(
   controller.register
 );
 
+authRouter.get('/verify/:verificationToken', controller.verify);
+
+// Resend verification email
+authRouter.post(
+  '/verify',
+  validateBody(schemas.userEmailSchema),
+  controller.resendVerificationEmail
+);
+
 authRouter.post('/login', validateBody(schemas.loginSchema), controller.login);
 
 authRouter.get('/current', authenticate, authenticate, controller.getCurrent);

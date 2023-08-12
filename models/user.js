@@ -6,10 +6,10 @@ import emailRegexp from '../constants/user-constants.js';
 
 const userSchema = new Schema(
   {
-    // name: {
-    //   type: String,
-    //   required: true,
-    // },
+    name: {
+      type: String,
+      // required: true,
+    },
     email: {
       type: String,
       required: [true, 'Email is required'],
@@ -31,6 +31,14 @@ const userSchema = new Schema(
       default: 'starter',
     },
     token: { type: String },
+    verificationToken: {
+      type: String,
+      required: [true, 'Please supply a verification token'],
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
   },
   { versionKey: false, timestamps: true }
 );
