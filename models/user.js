@@ -1,36 +1,42 @@
+// import mongoose from 'mongoose';
 import { Schema, model } from 'mongoose';
 import { handleSaveError, handleUpdateValidate } from './hooks.js';
 import emailRegexp from '../constants/user-constants.js';
 
 // ##############################################
 
+// mongoose.Schema.Types.String.checkRequired((v) => v != null);
+
 const userSchema = new Schema(
   {
-    // name: {
-    //   type: String,
-    //   required: true,
-    // },
+    name: String,
     email: {
       type: String,
-      required: [true, 'Email is required'],
+      set: (value) => value.toLowerCase(),
+      required: [true, 'Email is a required field'],
       unique: true,
       match: emailRegexp,
     },
     password: {
       type: String,
       minlength: 6,
-      required: [true, 'Set user password '],
+      required: [true, 'Password is a required field'],
     },
-    avatarUrl: {
-      type: String,
-      // required: true,
-    },
+    avatarUrl: String,
     subscription: {
       type: String,
       enum: ['starter', 'pro', 'business'],
       default: 'starter',
     },
-    token: { type: String },
+    token: String,
+    verificationToken: {
+      type: String,
+      // required: [true, 'Verification token is missing'],
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
   },
   { versionKey: false, timestamps: true }
 );

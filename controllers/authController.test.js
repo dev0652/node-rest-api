@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import 'dotenv/config';
+// import 'dotenv/config'; // imported once in server.js
 import request from 'supertest';
 
 import app from '../app.js';
